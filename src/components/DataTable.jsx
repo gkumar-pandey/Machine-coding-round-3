@@ -55,38 +55,44 @@ const DataTable = () => {
           placeholder="Search.."
         />
       </div>
-      <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Product Name</th>
-              <th>Product Weight</th>
-              <th onClick={() => sortHandler("price")}>Price(INR)</th>
-              <th onClick={() => sortHandler("calories")}>Calories</th>
-              <th>ingredients</th>
-            </tr>
-          </thead>
-          <tbody>
-            {snacksData.map((item) => (
-              <>
+      {searchText && snacksData.length == 0 ? (
+        <h2 style={{ margin: "1rem" }}>Product Not Available</h2>
+      ) : (
+        <>
+          <div>
+            <table className="table">
+              <thead>
                 <tr>
-                  <td>{item.id}</td>
-                  <td>{item.product_name}</td>
-                  <td>{item.product_weight}</td>
-                  <td>{item.price}</td>
-                  <td>{item.calories}</td>
-                  <td>
-                    {item.ingredients.map((ingredient) => (
-                      <span>{ingredient}, </span>
-                    ))}
-                  </td>
+                  <th>ID</th>
+                  <th>Product Name</th>
+                  <th>Product Weight</th>
+                  <th onClick={() => sortHandler("price")}>Price(INR)</th>
+                  <th onClick={() => sortHandler("calories")}>Calories</th>
+                  <th>ingredients</th>
                 </tr>
-              </>
-            ))}
-          </tbody>
-        </table>
-      </div>
+              </thead>
+              <tbody>
+                {snacksData.map((item) => (
+                  <>
+                    <tr>
+                      <td>{item.id}</td>
+                      <td>{item.product_name}</td>
+                      <td>{item.product_weight}</td>
+                      <td>{item.price}</td>
+                      <td>{item.calories}</td>
+                      <td>
+                        {item.ingredients.map((ingredient) => (
+                          <span>{ingredient}, </span>
+                        ))}
+                      </td>
+                    </tr>
+                  </>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 };
